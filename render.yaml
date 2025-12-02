@@ -6,6 +6,8 @@ services:
     envVars:
       - key: PORT
         value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
       - key: SPRING_DATASOURCE_URL
         fromDatabase:
           name: tutorhub-db
@@ -18,9 +20,11 @@ services:
         fromDatabase:
           name: tutorhub-db
           property: password
+      - key: JWT_SECRET
+        value: tutorHub123!@#$%secureSuperSecretKey
 
 databases:
   - name: tutorhub-db
     databaseName: tutorhub
     user: tutorhub_user
-    region: oregon
+    region: singapore
