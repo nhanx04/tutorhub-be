@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: tutorhub-be
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: tutorhub-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: tutorhub-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: tutorhub-db
+          property: password
+
+databases:
+  - name: tutorhub-db
+    databaseName: tutorhub
+    user: tutorhub_user
+    region: oregon
